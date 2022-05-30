@@ -6,7 +6,7 @@ custom:
     new_cluster:
       <<: *basic-cluster-props
       num_workers: 1
-      node_type_id: "Standard_E8_v3"
+      node_type_id: "Standard_F4s"
 
   newer-cluster-props: &newer-cluster-props
     spark_version: "10.3.x-cpu-ml-scala2.12"
