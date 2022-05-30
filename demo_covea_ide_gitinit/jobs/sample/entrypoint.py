@@ -9,8 +9,8 @@ class SampleJob(Job):
 
         for l in listing:
             self.logger.info(f"DBFS directory: {l}")
-        
-        print("*********my random print")
+
+        print("*********My random print")
         df = self.spark.range(0, 1000)
 
         df.write.format(self.conf["output_format"]).mode("overwrite").save(
