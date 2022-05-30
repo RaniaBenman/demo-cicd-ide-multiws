@@ -3,7 +3,7 @@
         "default": {
             "profile": "azure-demo-rania-pr",
             "workspace_dir": "/covea/demo_covea_ide/dbxgitinit",
-            "artifact_location": "dbfs:/covea/artifacts/demo_covea_ide"
+            "artifact_location": "dbfs:/covea/artifacts/demo_covea_ide_gitinit"
         }
     }
 }
