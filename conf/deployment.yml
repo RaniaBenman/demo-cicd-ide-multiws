@@ -34,3 +34,13 @@ environments:
         spark_python_task:
           python_file: "file://tests/integration/sample_test.py"
           parameters: ["--conf-file", "file:fuse://conf/test/sample.yml"]
+  #environment should be declared in .dbx/project.json
+  dev:
+    strict_path_adjustment_policy: true
+    jobs:
+      - name: "demo-covea-ide-gitinit-sample-run"
+        <<:
+          - *newer-static-cluster
+        spark_python_task:
+          python_file: "file://demo_covea_ide_gitinit/jobs/sample/entrypoint.py"
+          parameters: ["--conf-file", "file:fuse://conf/test/sample.yml"]

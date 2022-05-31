@@ -8,7 +8,7 @@ on:
       - 'v*' # this tag type is used for release pipelines
 
 jobs:
-  ci-pipeline:
+  CI-pipeline:
 
     runs-on: ubuntu-latest
     strategy:
