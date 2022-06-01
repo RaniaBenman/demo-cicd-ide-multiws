@@ -36,7 +36,7 @@ class SampleJob(Job):
         experiment_workspace_dir = "/covea/demo_covea_ide/dbxgitinit"
 
         print(self.conf["input_table_name"])
-        dataset = spark.read.table(self.conf["input_table_name"])
+        dataset = self.spark.read.table(self.conf["input_table_name"])
 
         mlflow.set_experiment(experiment_workspace_dir) #not needed in notebook
         mlflow.autolog(exclusive=False)
