@@ -21,6 +21,8 @@ class SampleJobUnitTest(unittest.TestCase):
         # feel free to add new methods to this magic mock to mock some particular functionality
         self.job.dbutils = MagicMock()
 
+        df = spark.read.option("delimiter", ";").option("header", "true").csv("turbine_sample.csv").createOrReplaceTempView("hive_metastore.default.turbines")
+
         self.job.launch()
 
         output_count = (
