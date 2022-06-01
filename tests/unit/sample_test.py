@@ -22,7 +22,7 @@ class SampleJobUnitTest(unittest.TestCase):
         self.job.dbutils = MagicMock()
         print("******")
         print(os.path.join(os.path.dirname(__file__), 'data/turbines_sample.csv'))
-        df = self.spark.read.option("delimiter", ";").option("header", "true").csv(os.path.join(os.path.dirname(__file__), '../tests/unit/data/turbines_sample.csv')).createOrReplaceTempView("hive_metastore.default.turbines")
+        df = self.spark.read.option("delimiter", ";").option("header", "true").csv(os.path.join(os.path.dirname(__file__), 'data/turbines_sample.csv')).createOrReplaceTempView("hive_metastore.default.turbines")
 
         self.job.launch()
 
