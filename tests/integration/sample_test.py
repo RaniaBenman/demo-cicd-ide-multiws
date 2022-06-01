@@ -1,15 +1,16 @@
 import unittest
 
+#from demo_covea_ide_gitinit.common import Job
 from demo_covea_ide_gitinit.jobs.sample.entrypoint import SampleJob
 from uuid import uuid4
 from pyspark.dbutils import DBUtils  # noqa
 
 
-class SampleJobIntegrationTest(unittest.TestCase,Job):#Job?
+class SampleJobIntegrationTest(unittest.TestCase):#Job?
     def setUp(self):
 
         self.test_dir = "dbfs:/tmp/tests/sample/%s" % str(uuid4())
-        self.test_config = {"output_format": "delta", "output_path": self.test_dir, "input_table_name": self.conf["input_table_name"]}#"hive_metastore.default.turbines"}#
+        self.test_config = {"output_format": "delta", "output_path": self.test_dir, "input_table_name": "hive_metastore.default.turbines"}#self.conf["input_table_name"]}
 
         self.job = SampleJob(init_conf=self.test_config)
         self.dbutils = DBUtils(self.job.spark)
@@ -25,7 +26,6 @@ class SampleJobIntegrationTest(unittest.TestCase,Job):#Job?
             .load(self.test_config["output_path"])
             .count()
         )
-
         self.assertGreater(output_count, 0)
 
     def tearDown(self):
