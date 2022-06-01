@@ -20,8 +20,9 @@ class SampleJobUnitTest(unittest.TestCase):
     def test_sample(self):
         # feel free to add new methods to this magic mock to mock some particular functionality
         self.job.dbutils = MagicMock()
-
-        df = self.spark.read.option("delimiter", ";").option("header", "true").csv("../tests/unit/data/turbines_sample.csv").createOrReplaceTempView("hive_metastore.default.turbines")
+        print("******")
+        print(os.path.join(os.path.dirname(__file__), '../tests/unit/data/turbines_sample.csv'))
+        df = self.spark.read.option("delimiter", ";").option("header", "true").csv(os.path.join(os.path.dirname(__file__), '../tests/unit/data/turbines_sample.csv')).createOrReplaceTempView("hive_metastore.default.turbines")
 
         self.job.launch()
 
