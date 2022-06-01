@@ -22,7 +22,11 @@ class SampleJobUnitTest(unittest.TestCase):
         # feel free to add new methods to this magic mock to mock some particular functionality
         self.job.dbutils = MagicMock()
         print("****Loading test dataset")
-        df = self.spark.read.option("delimiter", ",").option("header", "true").option("inferSchema" , "true").csv(os.path.join(os.path.dirname(__file__), 'data/turbines_sample.csv')).createOrReplaceTempView(self.test_config["input_table_name"])
+        df = self.spark.read.option("delimiter", ",")\
+            .option("header", "true")\
+            .option("inferSchema" , "true").\
+            csv(os.path.join(os.path.dirname(__file__), 'data/turbines_sample.csv'))\
+            .createOrReplaceTempView(self.test_config["input_table_name"])
 
         self.job.launch()
 
