@@ -5,11 +5,11 @@ from uuid import uuid4
 from pyspark.dbutils import DBUtils  # noqa
 
 
-class SampleJobIntegrationTest(unittest.TestCase):
+class SampleJobIntegrationTest(unittest.TestCase):#Job?
     def setUp(self):
 
         self.test_dir = "dbfs:/tmp/tests/sample/%s" % str(uuid4())
-        self.test_config = {"output_format": "delta", "output_path": self.test_dir, "input_table_name": self.conf["input_table_name"]}
+        self.test_config = {"output_format": "delta", "output_path": self.test_dir, "input_table_name": "hive_metastore.default.turbines"}#self.conf["input_table_name"]}
 
         self.job = SampleJob(init_conf=self.test_config)
         self.dbutils = DBUtils(self.job.spark)
