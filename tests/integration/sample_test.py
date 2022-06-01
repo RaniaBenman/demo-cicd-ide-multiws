@@ -26,7 +26,6 @@ class SampleJobIntegrationTest(unittest.TestCase):#Job?
             .load(self.test_config["output_path"])
             .count()
         )
-
         self.assertGreater(output_count, 0)
 
     def tearDown(self):
