@@ -35,7 +35,8 @@ class SampleJob(Job):
         client_model_tag = "turbine_gbt_covea"
         experiment_workspace_dir = "/covea/demo_covea_ide/dbxgitinit"
 
-        dataset = spark.read.table("hive_metastore.default.turbines")
+        print(self.conf["input_table_name"])
+        dataset = spark.read.table(self.conf["input_table_name"])
 
         mlflow.set_experiment(experiment_workspace_dir) #not needed in notebook
         mlflow.autolog(exclusive=False)
@@ -58,7 +59,6 @@ class SampleJob(Job):
                 StringIndexer(inputCol="status", outputCol="label"), 
                 cv
             ]
-            
             pipeline = Pipeline(stages=stages)
 
             pipelineTrained = pipeline.fit(training)

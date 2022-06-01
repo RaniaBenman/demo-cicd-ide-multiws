@@ -14,6 +14,7 @@ class SampleJobUnitTest(unittest.TestCase):
         self.test_config = {
             "output_format": "parquet",
             "output_path": os.path.join(self.test_dir, "output"),
+            "input_table_name": "turbines",
         }
         self.job = SampleJob(spark=self.spark, init_conf=self.test_config)
 
@@ -21,8 +22,7 @@ class SampleJobUnitTest(unittest.TestCase):
         # feel free to add new methods to this magic mock to mock some particular functionality
         self.job.dbutils = MagicMock()
         print("******")
-        print(os.path.join(os.path.dirname(__file__), 'data/turbines_sample.csv'))
-        df = self.spark.read.option("delimiter", ";").option("header", "true").csv(os.path.join(os.path.dirname(__file__), 'data/turbines_sample.csv')).createOrReplaceTempView("hive_metastore.default.turbines")
+        df = self.spark.read.option("delimiter", ",").option("header", "true").csv(os.path.join(os.path.dirname(__file__), 'data/turbines_sample.csv')).createOrReplaceTempView(self.test_config["input_table_name"])
 
         self.job.launch()
 
