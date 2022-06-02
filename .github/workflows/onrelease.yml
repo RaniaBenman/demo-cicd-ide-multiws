@@ -39,7 +39,7 @@ jobs:
 
       - name: Deploy the job
         run: |
-          dbx deploy --jobs=demo-covea-ide-gitinit-sample
+          dbx deploy --jobs=run
 
       - name: Create Release
         id: create_release
