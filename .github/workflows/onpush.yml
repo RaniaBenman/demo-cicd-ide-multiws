@@ -3,7 +3,7 @@ name: CI pipeline
 on:
   push:
     branches:
-      - 'main'
+      - 'staging'
     tags-ignore:
       - 'v*' # this tag type is used for release pipelines
 
@@ -42,10 +42,10 @@ jobs:
 
       - name: Deploy integration test
         run: |
-          dbx deploy --jobs=demo-covea-ide-gitinit-sample-integration-test --files-only
+          dbx deploy --jobs=integration-test --files-only
 
       - name: Run integration test
         run: |
-          dbx launch --job=demo-covea-ide-gitinit-sample-integration-test --as-run-submit --trace
+          dbx launch --job=integration-test --as-run-submit --trace
 
 

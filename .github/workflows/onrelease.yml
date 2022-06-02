@@ -2,6 +2,8 @@ name: Release pipeline
 
 on:
   push:
+    branches:
+      - 'main'
     tags:
       - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
 
@@ -16,8 +18,8 @@ jobs:
         python-version: [ 3.7 ]
 
     env:
-      DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
-      DATABRICKS_TOKEN:  ${{ secrets.DATABRICKS_TOKEN }}
+      DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST_PROD }}
+      DATABRICKS_TOKEN:  ${{ secrets.DATABRICKS_TOKEN_PROD }}
 
     steps:
       - uses: actions/checkout@v1
@@ -37,7 +39,7 @@ jobs:
 
       - name: Deploy the job
         run: |
-          dbx deploy --jobs=demo-covea-ide-gitinit-sample
+          dbx deploy --jobs=run
 
       - name: Create Release
         id: create_release
