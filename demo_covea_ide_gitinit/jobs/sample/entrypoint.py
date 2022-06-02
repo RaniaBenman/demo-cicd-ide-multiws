@@ -18,13 +18,13 @@ from mlflow.models.signature import infer_signature
 class SampleJob(Job):
 
     def launch(self):
-        self.logger.info("********Launching sample job")
+        self.logger.info("********Launching CICD Demo job********")
         listing = self.dbutils.fs.ls("dbfs:/")
 
         for l in listing:
             self.logger.info(f"DBFS directory: {l}")
 
-        print("*********My random print")
+        print("********My random print********")
         df = self.spark.range(0, 1000)
 
         df.write.format(self.conf["output_format"]).mode("overwrite").save(
@@ -79,7 +79,7 @@ class SampleJob(Job):
 
         #----------------------------------------------------
 
-        self.logger.info("*******Sample job finished!")
+        self.logger.info("********Sample job finished!********")
 
 
 if __name__ == "__main__":
