@@ -42,5 +42,5 @@ if __name__ == "__main__":
     result = runner.run(tests)
     if not result.wasSuccessful():
         raise RuntimeError(
-            "One or multiple tests failed. Please check job logs for additional information."
+            "One or multiple tests failed. Please check the job logs for additional information."
         )
