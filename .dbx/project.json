@@ -19,6 +19,6 @@
             "profile": "azure-demo-rania-pr-prod",
             "workspace_dir": "/covea/demo_covea_ide/dbxgitinit",
             "artifact_location": "dbfs:/covea/artifacts/demo_covea_ide"
-        },
+        }
     }
 }
