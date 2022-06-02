@@ -5,6 +5,11 @@
             "workspace_dir": "/covea/demo_covea_ide/dbxgitinit",
             "artifact_location": "dbfs:/covea/artifacts/demo_covea_ide"
         },
+        "prod": {
+            "profile": "azure-demo-rania-pr-prod",
+            "workspace_dir": "/covea/demo_covea_ide/dbxgitinit",
+            "artifact_location": "dbfs:/covea/artifacts/demo_covea_ide"
+        },
         "dev": {
             "profile": "azure-dlh-demo-rania",
             "workspace_dir": "/covea/demo_covea_ide/dbxgitinit",
