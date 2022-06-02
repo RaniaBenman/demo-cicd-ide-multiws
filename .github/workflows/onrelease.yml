@@ -24,7 +24,7 @@ jobs:
       - name: Exit if not on main branch
         if: endsWith(github.ref, 'master') == false
         run: |
-          echo "Tag is on ${{ github.base_ref }} not on main branch. No need to release. Goodbye!"
+          echo "Tag is on ${{ github.event.base_ref }} not on main branch. No need to release. Goodbye!"
           exit -1
 
       - name: Set up Python
