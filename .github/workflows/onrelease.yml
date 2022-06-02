@@ -39,7 +39,7 @@ jobs:
 
       - name: Deploy the job
         run: |
-          dbx deploy --jobs=run
+          dbx deploy --environment=prod --jobs=run
 
       - name: Create Release
         id: create_release
