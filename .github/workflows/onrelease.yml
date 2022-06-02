@@ -21,9 +21,11 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
-      - name: Exit if not on master branch
+      - name: Exit if not on main branch
         if: endsWith(github.ref, 'main') == false
-        run: exit -1
+        run: |
+          echo "Tag is not on main branch. No need to release. Goodbye!"
+          exit -1
 
       - name: Set up Python
         uses: actions/setup-python@v1
