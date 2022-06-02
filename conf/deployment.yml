@@ -6,41 +6,51 @@ custom:
     new_cluster:
       <<: *basic-cluster-props
       num_workers: 1
-      node_type_id: "Standard_E8_v3"
+      node_type_id: "Standard_F4s"
 
-  newer-cluster-props: &newer-cluster-props
+  normal-cluster-props: &normal-cluster-props
     spark_version: "10.3.x-cpu-ml-scala2.12"
 
-  newer-static-cluster: &newer-static-cluster
+  normal-static-cluster: &normal-static-cluster
     new_cluster:
-      <<: *newer-cluster-props
-      num_workers: 1
-      node_type_id: "Standard_F4s"
+      <<: *normal-cluster-props
+      num_workers: 2
+      node_type_id: "Standard_E8_v3"
 
 # please note that we're using FUSE reference for config file, hence we're going to load this file using its local FS path
 environments:
   default:
     strict_path_adjustment_policy: true
     jobs:
-      - name: "demo-covea-ide-gitinit-sample-run"
+      - name: "integration-test"
         <<:
-          - *newer-static-cluster
-        spark_python_task:
-          python_file: "file://demo_covea_ide_gitinit/jobs/sample/entrypoint.py"
-          parameters: ["--conf-file", "file:fuse://conf/test/sample.yml"]
-      - name: "demo-covea-ide-gitinit-sample-integration-test"
-        <<:
-          - *basic-static-cluster
+          - *normal-static-cluster
         spark_python_task:
           python_file: "file://tests/integration/sample_test.py"
+          parameters: ["--conf-file", "file:fuse://conf/test/sample.yml"]
+  #environment should be declared in .dbx/project.json
+  prod:
+    strict_path_adjustment_policy: true
+    jobs:
+      - name: "run"
+        <<:
+          - *normal-static-cluster
+        spark_python_task:
+          python_file: "file://demo_covea_ide_gitinit/jobs/sample/entrypoint.py"
           parameters: ["--conf-file", "file:fuse://conf/test/sample.yml"]
   #environment should be declared in .dbx/project.json
   dev:
     strict_path_adjustment_policy: true
     jobs:
-      - name: "demo-covea-ide-gitinit-sample-run"
+      - name: "run"
         <<:
-          - *newer-static-cluster
+          - *basic-static-cluster
         spark_python_task:
           python_file: "file://demo_covea_ide_gitinit/jobs/sample/entrypoint.py"
+          parameters: ["--conf-file", "file:fuse://conf/test/sample.yml"]
+      - name: "integration-test"
+        <<:
+          - *basic-static-cluster
+        spark_python_task:
+          python_file: "file://tests/integration/sample_test.py"
           parameters: ["--conf-file", "file:fuse://conf/test/sample.yml"]
