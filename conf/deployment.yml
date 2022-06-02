@@ -29,16 +29,6 @@ environments:
           python_file: "file://tests/integration/sample_test.py"
           parameters: ["--conf-file", "file:fuse://conf/test/sample.yml"]
   #environment should be declared in .dbx/project.json
-  prod:
-    strict_path_adjustment_policy: true
-    jobs:
-      - name: "run"
-        <<:
-          - *normal-static-cluster
-        spark_python_task:
-          python_file: "file://demo_covea_ide_gitinit/jobs/sample/entrypoint.py"
-          parameters: ["--conf-file", "file:fuse://conf/test/sample.yml"]
-  #environment should be declared in .dbx/project.json
   dev:
     strict_path_adjustment_policy: true
     jobs:
@@ -53,4 +43,24 @@ environments:
           - *basic-static-cluster
         spark_python_task:
           python_file: "file://tests/integration/sample_test.py"
+          parameters: ["--conf-file", "file:fuse://conf/test/sample.yml"]
+  #environment should be declared in .dbx/project.json (json's profile var's irrelevant for this env)
+  staging:
+    strict_path_adjustment_policy: true
+    jobs:
+      - name: "integration-test"
+        <<:
+          - *normal-static-cluster
+        spark_python_task:
+          python_file: "file://tests/integration/sample_test.py"
+          parameters: ["--conf-file", "file:fuse://conf/test/sample.yml"]
+  #environment should be declared in .dbx/project.json (json's profile var's irrelevant for this env)
+  prod:
+    strict_path_adjustment_policy: true
+    jobs:
+      - name: "run"
+        <<:
+          - *normal-static-cluster
+        spark_python_task:
+          python_file: "file://demo_covea_ide_gitinit/jobs/sample/entrypoint.py"
           parameters: ["--conf-file", "file:fuse://conf/test/sample.yml"]
