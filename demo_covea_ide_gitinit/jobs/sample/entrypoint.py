@@ -33,7 +33,7 @@ class SampleJob(Job):
 
         #-----------------------Added!-----------------------------
         client_model_tag = "turbine_gbt_covea"
-        experiment_workspace_dir = "/covea/demo_covea_ide/dbxgitinit"
+        experiment_workspace_dir = "/demo/cicd/ide_multiws"
 
         print(self.conf["input_table_name"])
         dataset = self.spark.read.table(self.conf["input_table_name"])
