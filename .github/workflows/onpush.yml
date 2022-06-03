@@ -42,10 +42,10 @@ jobs:
 
       - name: Deploy integration test
         run: |
-          dbx deploy --environment=staging --jobs=integration-test --files-only
+          dbx deploy --environment=staging --jobs=demo-ide-multiws-cicd-integration-test --files-only
 
       - name: Run integration test
         run: |
-          dbx launch --environment=staging --job=integration-test --as-run-submit --trace
+          dbx launch --environment=staging --job=demo-ide-multiws-cicd-integration-test --as-run-submit --trace
 
 

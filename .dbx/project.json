@@ -5,17 +5,17 @@
             "workspace_dir": "/covea/demo_covea_ide/dbxgitinit",
             "artifact_location": "dbfs:/covea/artifacts/demo_covea_ide"
         },
-        "dev": {
+        "demo-ide-multiws-cicd-dev": {
             "profile": "azure-dlh-demo-rania",
             "workspace_dir": "/covea/demo_covea_ide/dbxgitinit",
             "artifact_location": "dbfs:/covea/artifacts/demo_covea_ide"
         },
-        "staging": {
+        "demo-ide-multiws-cicd-staging": {
             "profile": "azure-demo-rania-pr",
             "workspace_dir": "/covea/demo_covea_ide/dbxgitinit",
             "artifact_location": "dbfs:/covea/artifacts/demo_covea_ide"
         },
-        "prod": {
+        "demo-ide-multiws-cicd-prod": {
             "profile": "azure-demo-rania-pr-prod",
             "workspace_dir": "/covea/demo_covea_ide/dbxgitinit",
             "artifact_location": "dbfs:/covea/artifacts/demo_covea_ide"
