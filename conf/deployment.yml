@@ -32,7 +32,7 @@ environments:
   dev:
     strict_path_adjustment_policy: true
     jobs:
-      - name: "demo-ide-multiws-cicd-run"
+      - name: "demo-ide-multiws-cicd"
         <<:
           - *basic-static-cluster
         spark_python_task:
@@ -58,7 +58,7 @@ environments:
   prod:
     strict_path_adjustment_policy: true
     jobs:
-      - name: "demo-ide-multiws-cicd-run"
+      - name: "demo-ide-multiws-cicd"
         <<:
           - *normal-static-cluster
         spark_python_task:
