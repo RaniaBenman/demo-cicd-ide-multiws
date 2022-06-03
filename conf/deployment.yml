@@ -22,7 +22,7 @@ environments:
   default:
     strict_path_adjustment_policy: true
     jobs:
-      - name: "demo-ide-multiws-cicd-integration-test"
+      - name: "demo-cicd-ide-multiws-integration-test"
         <<:
           - *normal-static-cluster
         spark_python_task:
@@ -32,33 +32,37 @@ environments:
   dev:
     strict_path_adjustment_policy: true
     jobs:
-      - name: "demo-ide-multiws-cicd"
+      - name: "demo-cicd-ide-multiws"
         <<:
           - *basic-static-cluster
         spark_python_task:
           python_file: "file://demo_covea_ide_gitinit/jobs/sample/entrypoint.py"
           parameters: ["--conf-file", "file:fuse://conf/test/sample.yml"]
-      - name: "demo-ide-multiws-cicd-integration-test"
+      - name: "demo-cicd-ide-multiws-integration-test"
         <<:
           - *basic-static-cluster
         spark_python_task:
           python_file: "file://tests/integration/sample_test.py"
           parameters: ["--conf-file", "file:fuse://conf/test/sample.yml"]
-  #environment should be declared in .dbx/project.json (json's profile var's irrelevant for this env)
+  #environment should be declared in .dbx/project.json
+  #(json's profile var's irrelevant for this env)
+  #if you rename jobs, rename them in .git/*.yml
   staging:
     strict_path_adjustment_policy: true
     jobs:
-      - name: "demo-ide-multiws-cicd-integration-test"
+      - name: "demo-cicd-ide-multiws-integration-test"
         <<:
           - *normal-static-cluster
         spark_python_task:
           python_file: "file://tests/integration/sample_test.py"
           parameters: ["--conf-file", "file:fuse://conf/test/sample.yml"]
-  #environment should be declared in .dbx/project.json (json's profile var's irrelevant for this env)
+  #environment should be declared in .dbx/project.json
+  #(json's profile var's irrelevant for this env)
+  #if you rename jobs, rename them in .git/*.yml
   prod:
     strict_path_adjustment_policy: true
     jobs:
-      - name: "demo-ide-multiws-cicd"
+      - name: "demo-cicd-ide-multiws"
         <<:
           - *normal-static-cluster
         spark_python_task:
