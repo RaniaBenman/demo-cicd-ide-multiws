@@ -64,3 +64,6 @@ environments:
         spark_python_task:
           python_file: "file://demo_covea_ide_gitinit/jobs/sample/entrypoint.py"
           parameters: ["--conf-file", "file:fuse://conf/test/sample.yml"]
+        schedule:
+          quartz_cron_expression: "0 45 7 ? * * *"
+          timezone_id: "Europe/London"
