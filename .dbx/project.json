@@ -2,23 +2,23 @@
     "environments": {
         "default": {
             "profile": "azure-demo-rania-pr",
-            "workspace_dir": "/covea/demo_covea_ide/dbxgitinit",
-            "artifact_location": "dbfs:/covea/artifacts/demo_covea_ide"
+            "workspace_dir": "/demo/cicd/ide_multiws",
+            "artifact_location": "dbfs:/demo/artifacts/cicd_ide_multiws"
         },
         "dev": {
             "profile": "azure-dlh-demo-rania",
-            "workspace_dir": "/covea/demo_covea_ide/dbxgitinit",
-            "artifact_location": "dbfs:/covea/artifacts/demo_covea_ide"
+            "workspace_dir": "/demo/cicd/ide_multiws",
+            "artifact_location": "dbfs:/demo/artifacts/cicd_ide_multiws"
         },
         "staging": {
             "profile": "azure-demo-rania-pr",
-            "workspace_dir": "/covea/demo_covea_ide/dbxgitinit",
-            "artifact_location": "dbfs:/covea/artifacts/demo_covea_ide"
+            "workspace_dir": "/demo/cicd/ide_multiws",
+            "artifact_location": "dbfs:/demo/artifacts/cicd_ide_multiws"
         },
         "prod": {
             "profile": "azure-demo-rania-pr-prod",
-            "workspace_dir": "/covea/demo_covea_ide/dbxgitinit",
-            "artifact_location": "dbfs:/covea/artifacts/demo_covea_ide"
+            "workspace_dir": "/demo/cicd/ide_multiws",
+            "artifact_location": "dbfs:/demo/artifacts/cicd_ide_multiws"
         }
     }
 }
