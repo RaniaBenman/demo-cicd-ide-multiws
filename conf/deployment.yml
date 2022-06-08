@@ -46,7 +46,7 @@ environments:
           parameters: ["--conf-file", "file:fuse://conf/test/sample.yml"]
   #environment should be declared in .dbx/project.json
   #(json's profile var's irrelevant for this env)
-  #if you rename jobs, rename them in .git/*.yml
+  #if you rename jobs, rename them in .github/workflows/*.yml
   staging:
     strict_path_adjustment_policy: true
     jobs:
@@ -58,7 +58,7 @@ environments:
           parameters: ["--conf-file", "file:fuse://conf/test/sample.yml"]
   #environment should be declared in .dbx/project.json
   #(json's profile var's irrelevant for this env)
-  #if you rename jobs, rename them in .git/*.yml
+  #if you rename jobs, rename them in .github/workflows/*.yml
   prod:
     strict_path_adjustment_policy: true
     jobs:
