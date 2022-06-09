@@ -91,13 +91,13 @@ class SampleJob(Job):
         #if in prod (main run, not unit tests, not integ tests)
         if self.conf["run_mode"] == "main":
             #or less restritive, allowing model registry on integration, use: != "unit":
-            
+
             #finding best run for our model
             best_model_filter = ' and metrics.AUROC > 0.7'#TODO criteria can be in conf file, and differ from env to another
             best_model = mlflow.search_runs(filter_string='tags.'+tag_label_model+'="'+tag_value_model+'" and attributes.status = "FINISHED"' + best_model_filter, order_by=['metrics.AUROC DESC'], max_results=1).iloc[0]
 
             '''
-            #today ranked at the top but had same performance as previous run -> don't register (TODO test & clean up )
+            #extra sauce - today ranked at the top but had same performance as previous run -> don't register (TODO test & clean up )
             best_models = mlflow.search_runs(filter_string='tags.'+tag_label_model+'="'+tag_value_model+'" and attributes.status = "FINISHED"' + best_model_filter, order_by=['metrics.AUROC DESC'], max_results=2)
             if best_modelS.iloc[0].get("metrics.AUROC"+tag_label_training_date) == best_modelS.iloc[1].get("metrics.AUROC"+tag_label_training_date) && ( best_models.iloc[0].get("tags."+tag_label_training_date) == tag_value_training_date || best_models.iloc[1].get("tags."+tag_label_training_date) == tag_value_training_date )
                 #saving model
