@@ -80,7 +80,6 @@ class SampleJob(Job):
 
             # Area under ROC curve
             mlflow.log_metric("AUROC", metrics.areaUnderROC)
-            mlflow.log_param("custom_loggable_param", "dummy value")#***Focus point : Last. Custom tags. (why tags? TODO)
 
             mlflow.set_tag(tag_label_model, tag_value_model)
             mlflow.set_tag(tag_label_training_date, tag_value_training_date)
