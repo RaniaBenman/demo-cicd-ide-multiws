@@ -18,7 +18,7 @@ from mlflow.models.signature import infer_signature
 class SampleJob(Job):
 
     def launch(self):
-        self.logger.info("********Launching CICD Demo job********")
+        self.logger.info("******** Launching CICD Demo job ********")
         listing = self.dbutils.fs.ls("dbfs:/")
 
         for l in listing:
@@ -30,7 +30,7 @@ class SampleJob(Job):
         df.write.format(self.conf["output_format"]).mode("overwrite").save(
             self.conf["output_path"]
         )
-
+#Added comment
         #-----------------------Added!-----------------------------
         model_name = "demo_cicd_ide_multiws"
         model_reg_name = "demo_cicd_ide_multiws"#TODO change with spaces
