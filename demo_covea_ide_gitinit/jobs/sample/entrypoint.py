@@ -89,32 +89,33 @@ class SampleJob(Job):
             print(metrics.areaUnderROC)#***Focus point : print output is viewable locally upon execution
 
         #------------------------MODEL REGISTRY----------------------------
-        #finding best run for our model
-        best_model_filter = ' and metrics.AUROC > 0.7'#TODO criteria can be in conf file, and differ from env to another
-        best_model = mlflow.search_runs(filter_string='tags.'+tag_label_model+'="'+tag_value_model+'" and attributes.status = "FINISHED"' + best_model_filter, order_by=['metrics.AUROC DESC'], max_results=1).iloc[0]
+        #if not in dev/test mode (aka running locally)
+        if self.conf["run_mode"] != "unit":
+            #finding best run for our model
+            best_model_filter = ' and metrics.AUROC > 0.7'#TODO criteria can be in conf file, and differ from env to another
+            best_model = mlflow.search_runs(filter_string='tags.'+tag_label_model+'="'+tag_value_model+'" and attributes.status = "FINISHED"' + best_model_filter, order_by=['metrics.AUROC DESC'], max_results=1).iloc[0]
 
-        '''
-        #today ranked at the top but had same performance as previous run -> don't register (TODO test & clean up )
-        best_models = mlflow.search_runs(filter_string='tags.'+tag_label_model+'="'+tag_value_model+'" and attributes.status = "FINISHED"' + best_model_filter, order_by=['metrics.AUROC DESC'], max_results=2)
-        if best_modelS.iloc[0].get("metrics.AUROC"+tag_label_training_date) == best_modelS.iloc[1].get("metrics.AUROC"+tag_label_training_date) && ( best_models.iloc[0].get("tags."+tag_label_training_date) == tag_value_training_date || best_models.iloc[1].get("tags."+tag_label_training_date) == tag_value_training_date )
-            #saving model
-            model_uri = best_model.artifact_uri
-            model_registered = mlflow.register_model(model_uri+"/"+model_name, model_reg_name)
-        else:
-            self.logger.info("********Not your best work...Didn't register model.********")
-            self.logger.info("********Didn't register model. Keep trying********")
-        '''    
+            '''
+            #today ranked at the top but had same performance as previous run -> don't register (TODO test & clean up )
+            best_models = mlflow.search_runs(filter_string='tags.'+tag_label_model+'="'+tag_value_model+'" and attributes.status = "FINISHED"' + best_model_filter, order_by=['metrics.AUROC DESC'], max_results=2)
+            if best_modelS.iloc[0].get("metrics.AUROC"+tag_label_training_date) == best_modelS.iloc[1].get("metrics.AUROC"+tag_label_training_date) && ( best_models.iloc[0].get("tags."+tag_label_training_date) == tag_value_training_date || best_models.iloc[1].get("tags."+tag_label_training_date) == tag_value_training_date )
+                #saving model
+                model_uri = best_model.artifact_uri
+                model_registered = mlflow.register_model(model_uri+"/"+model_name, model_reg_name)
+            else:
+                self.logger.info("********Not your best work...Didn't register model.********")
+                self.logger.info("********Didn't register model. Keep trying********")
+            '''    
 
-        #making sure TODAY's run turned out to be the BEST ever for our model!
-        best_model_training_date = best_model.get("tags."+tag_label_training_date)
-        if best_model_training_date == tag_value_training_date:
-            #saving model
-            model_uri = best_model.artifact_uri
-            model_registered = mlflow.register_model(model_uri+"/"+model_name, model_reg_name)
-        else:
-            self.logger.info("********Not your best work... Didn't register model.********")
-            self.logger.info("********Didn't register model. Keep trying********")
-
+            #making sure TODAY's run turned out to be the BEST ever for our model!
+            best_model_training_date = best_model.get("tags."+tag_label_training_date)
+            if best_model_training_date == tag_value_training_date:
+                #saving model
+                model_uri = best_model.artifact_uri
+                model_registered = mlflow.register_model(model_uri+"/"+model_name, model_reg_name)
+            else:
+                self.logger.info("********Not your best work... Didn't register model.********")
+                self.logger.info("********Didn't register model. Keep trying********")
         #------------------------------------------------------------------
         self.logger.info("********Sample job finished!********")
 
