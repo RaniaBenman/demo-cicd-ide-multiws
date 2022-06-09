@@ -10,7 +10,12 @@ class SampleJobIntegrationTest(unittest.TestCase):#Job?
     def setUp(self):
 
         self.test_dir = "dbfs:/tmp/tests/sample/%s" % str(uuid4())
-        self.test_config = {"output_format": "delta", "output_path": self.test_dir, "input_table_name": "hive_metastore.default.turbines"}#self.conf["input_table_name"]}
+        self.test_config = {
+            "output_format": "delta",
+            "output_path": self.test_dir,
+            "input_table_name": "hive_metastore.default.turbines",
+            "run_mode": "integration",
+        }#self.conf["input_table_name"]}
 
         self.job = SampleJob(init_conf=self.test_config)
         self.dbutils = DBUtils(self.job.spark)
@@ -27,6 +32,22 @@ class SampleJobIntegrationTest(unittest.TestCase):#Job?
             .count()
         )
         self.assertGreater(output_count, 0)
+
+        import mlflow
+        from mlflow import spark as mlflow_spark
+        from mlflow.models.signature import infer_signature
+        from datetime import date
+        tag_label_model = "model"
+        tag_label_training_date = "training_date"
+        tag_value_model = "turbine_gbt"
+        tag_value_training_date = date.today().strftime("%Y-%m-%d")
+
+        #finding successful run for our model
+        working_model_filter = ' and metrics.AUROC >= 0'#TODO criteria can be in conf file, and differ from env to another
+        working_model = mlflow.search_runs(filter_string='tags.'+tag_label_model+'="'+tag_value_model+'" and attributes.status = "FINISHED" and tags.'+tag_label_training_date+'="'+tag_value_training_date+'"'+working_model_filter, order_by=['metrics.AUROC DESC'], max_results=1)#.iloc[0]
+        
+        #making sure TODAY's run turned out to be the BEST ever for our model!
+        self.assertGreater(working_model.size, 0)
 
     def tearDown(self):
         self.dbutils.fs.rm(self.test_dir, True)

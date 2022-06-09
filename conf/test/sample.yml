@@ -1,3 +1,4 @@
 output_format: "delta"
 output_path: "dbfs:/dbx/tmp/test/demo_covea_ide_gitinit"
 input_table_name: "hive_metastore.default.turbines"
+run_mode: "main"
