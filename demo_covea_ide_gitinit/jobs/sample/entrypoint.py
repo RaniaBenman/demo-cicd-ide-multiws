@@ -88,8 +88,10 @@ class SampleJob(Job):
             print(metrics.areaUnderROC)#***Focus point : print output is viewable locally upon execution
 
         #------------------------MODEL REGISTRY----------------------------
-        #if not in dev/test mode (aka running locally)
-        if self.conf["run_mode"] != "unit":
+        #if in prod (main run, not unit tests, not integ tests)
+        if self.conf["run_mode"] == "main":
+            #or less restritive, allowing model registry on integration, use: != "unit":
+            
             #finding best run for our model
             best_model_filter = ' and metrics.AUROC > 0.7'#TODO criteria can be in conf file, and differ from env to another
             best_model = mlflow.search_runs(filter_string='tags.'+tag_label_model+'="'+tag_value_model+'" and attributes.status = "FINISHED"' + best_model_filter, order_by=['metrics.AUROC DESC'], max_results=1).iloc[0]

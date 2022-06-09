@@ -30,16 +30,7 @@ class SampleJobUnitTest(unittest.TestCase):
             .createOrReplaceTempView(self.test_config["input_table_name"])
 
         self.job.launch()
-
-        output_count = (
-            self.spark.read.format(self.test_config["output_format"])
-            .load(self.test_config["output_path"])
-            .count()
-        )
-        self.assertGreater(output_count, 0)
-
-
-
+        
         import mlflow
         from mlflow import spark as mlflow_spark
         from mlflow.models.signature import infer_signature
