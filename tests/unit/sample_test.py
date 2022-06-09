@@ -15,6 +15,7 @@ class SampleJobUnitTest(unittest.TestCase):
             "output_format": "parquet",
             "output_path": os.path.join(self.test_dir, "output"),
             "input_table_name": "turbines",
+            "run_mode":"unit",
         }
         self.job = SampleJob(spark=self.spark, init_conf=self.test_config)
 
