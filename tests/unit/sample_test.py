@@ -54,10 +54,6 @@ class SampleJobUnitTest(unittest.TestCase):
         working_model = mlflow.search_runs(filter_string='tags.'+tag_label_model+'="'+tag_value_model+'" and attributes.status = "FINISHED" and tags.'+tag_label_training_date+'="'+tag_value_training_date+'"'+working_model_filter, order_by=['metrics.AUROC DESC'], max_results=1)#.iloc[0]
         
         #making sure TODAY's run turned out to be the BEST ever for our model!
-        if working_model.size != 0:
-            print("*******SUCCESS*******")
-        else:
-            print("*******OH NO*******")
         self.assertGreater(working_model.size, 0)
 
 
