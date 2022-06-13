@@ -1,4 +1,4 @@
-from demo_covea_ide_gitinit.common import Job
+from demo_cicd_ide_multiws.common import Job
 
 #once the data is ready, we can train a model
 import mlflow
@@ -18,7 +18,7 @@ from mlflow.models.signature import infer_signature
 class SampleJob(Job):
 
     def launch(self):
-        self.logger.info("********Launching CICD Demo job********")
+        self.logger.info("******** Launching CICD Demo job ********")
         listing = self.dbutils.fs.ls("dbfs:/")
 
         for l in listing:
@@ -30,7 +30,7 @@ class SampleJob(Job):
         df.write.format(self.conf["output_format"]).mode("overwrite").save(
             self.conf["output_path"]
         )
-
+#Added comment
         #-----------------------Added!-----------------------------
         model_name = "demo_cicd_ide_multiws"
         model_reg_name = "demo_cicd_ide_multiws"#TODO change with spaces
@@ -88,14 +88,16 @@ class SampleJob(Job):
             print(metrics.areaUnderROC)#***Focus point : print output is viewable locally upon execution
 
         #------------------------MODEL REGISTRY----------------------------
-        #if not in dev/test mode (aka running locally)
-        if self.conf["run_mode"] != "unit":
+        #if in prod (main run, not unit tests, not integ tests)
+        if self.conf["run_mode"] == "main":
+            #or less restritive, allowing model registry on integration, use: != "unit":
+
             #finding best run for our model
             best_model_filter = ' and metrics.AUROC > 0.7'#TODO criteria can be in conf file, and differ from env to another
             best_model = mlflow.search_runs(filter_string='tags.'+tag_label_model+'="'+tag_value_model+'" and attributes.status = "FINISHED"' + best_model_filter, order_by=['metrics.AUROC DESC'], max_results=1).iloc[0]
 
             '''
-            #today ranked at the top but had same performance as previous run -> don't register (TODO test & clean up )
+            #extra sauce - today ranked at the top but had same performance as previous run -> don't register (TODO test & clean up )
             best_models = mlflow.search_runs(filter_string='tags.'+tag_label_model+'="'+tag_value_model+'" and attributes.status = "FINISHED"' + best_model_filter, order_by=['metrics.AUROC DESC'], max_results=2)
             if best_modelS.iloc[0].get("metrics.AUROC"+tag_label_training_date) == best_modelS.iloc[1].get("metrics.AUROC"+tag_label_training_date) && ( best_models.iloc[0].get("tags."+tag_label_training_date) == tag_value_training_date || best_models.iloc[1].get("tags."+tag_label_training_date) == tag_value_training_date )
                 #saving model

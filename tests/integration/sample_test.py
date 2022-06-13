@@ -1,7 +1,6 @@
 import unittest
 
-#from demo_covea_ide_gitinit.common import Job
-from demo_covea_ide_gitinit.jobs.sample.entrypoint import SampleJob
+from demo_cicd_ide_multiws.jobs.sample.entrypoint import SampleJob
 from uuid import uuid4
 from pyspark.dbutils import DBUtils  # noqa
 
@@ -26,13 +25,6 @@ class SampleJobIntegrationTest(unittest.TestCase):#Job?
 
         self.job.launch()
 
-        output_count = (
-            self.spark.read.format(self.test_config["output_format"])
-            .load(self.test_config["output_path"])
-            .count()
-        )
-        self.assertGreater(output_count, 0)
-
         import mlflow
         from mlflow import spark as mlflow_spark
         from mlflow.models.signature import infer_signature
@@ -46,8 +38,7 @@ class SampleJobIntegrationTest(unittest.TestCase):#Job?
         working_model_filter = ' and metrics.AUROC >= 0'#TODO criteria can be in conf file, and differ from env to another
         working_model = mlflow.search_runs(filter_string='tags.'+tag_label_model+'="'+tag_value_model+'" and attributes.status = "FINISHED" and tags.'+tag_label_training_date+'="'+tag_value_training_date+'"'+working_model_filter, order_by=['metrics.AUROC DESC'], max_results=1)#.iloc[0]
         
-        #making sure TODAY's run turned out to be the BEST ever for our model!
-        self.assertGreater(working_model.size, 0)
+        self.assertGreater(working_model.size, 0.7)
 
     def tearDown(self):
         self.dbutils.fs.rm(self.test_dir, True)
