@@ -1,8 +1,8 @@
 from setuptools import find_packages, setup
-from demo_covea_ide_gitinit import __version__
+from demo_cicd_ide_multiws import __version__
 
 setup(
-    name="demo_covea_ide_gitinit",
+    name="demo_cicd_ide_multiws",
     packages=find_packages(exclude=["tests", "tests.*"]),
     setup_requires=["wheel"],
     version=__version__,

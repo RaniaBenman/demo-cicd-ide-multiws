@@ -3,7 +3,7 @@ import tempfile
 import os
 import shutil
 
-from demo_covea_ide_gitinit.jobs.sample.entrypoint import SampleJob
+from demo_cicd_ide_multiws.jobs.sample.entrypoint import SampleJob
 from pyspark.sql import SparkSession
 from unittest.mock import MagicMock
 
@@ -30,7 +30,7 @@ class SampleJobUnitTest(unittest.TestCase):
             .createOrReplaceTempView(self.test_config["input_table_name"])
 
         self.job.launch()
-        
+
         import mlflow
         from mlflow import spark as mlflow_spark
         from mlflow.models.signature import infer_signature
@@ -44,7 +44,6 @@ class SampleJobUnitTest(unittest.TestCase):
         working_model_filter = ' and metrics.AUROC >= 0'#TODO criteria can be in conf file, and differ from env to another
         working_model = mlflow.search_runs(filter_string='tags.'+tag_label_model+'="'+tag_value_model+'" and attributes.status = "FINISHED" and tags.'+tag_label_training_date+'="'+tag_value_training_date+'"'+working_model_filter, order_by=['metrics.AUROC DESC'], max_results=1)#.iloc[0]
         
-        #making sure TODAY's run turned out to be the BEST ever for our model!
         self.assertGreater(working_model.size, 0)
 
 
