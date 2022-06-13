@@ -1,4 +1,4 @@
-from demo_covea_ide_gitinit.common import Job
+from demo_cicd_ide_multiws.common import Job
 
 #once the data is ready, we can train a model
 import mlflow

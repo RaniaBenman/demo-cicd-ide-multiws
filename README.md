@@ -93,7 +93,7 @@ Please set the following secrets or environment variables for your CI provider:
 ## Testing and releasing via CI pipeline
 
 - To trigger the CI pipeline, simply push your code to the repository. If CI provider is correctly set, it shall trigger the general testing pipeline
-- To trigger the release pipeline, get the current version from the `demo_covea_ide_gitinit/__init__.py` file and tag the current code version:
+- To trigger the release pipeline, get the current version from the `demo_cicd_ide_multiws/__init__.py` file and tag the current code version:
 ```
 git tag -a v<your-project-version> -m "Release tag for version <your-project-version>"
 git push origin --tags
