@@ -35,10 +35,11 @@ class SampleJobIntegrationTest(unittest.TestCase):#Job?
         tag_value_training_date = date.today().strftime("%Y-%m-%d")
 
         #finding successful run for our model
-        working_model_filter = ' and metrics.AUROC >= 0'#TODO criteria can be in conf file, and differ from env to another
+        #---------------Integ test success criteria------------
+        working_model_filter = ' and metrics.AUROC >= 0.7'#TODO criteria can be in conf file, and differ from env to another
         working_model = mlflow.search_runs(filter_string='tags.'+tag_label_model+'="'+tag_value_model+'" and attributes.status = "FINISHED" and tags.'+tag_label_training_date+'="'+tag_value_training_date+'"'+working_model_filter, order_by=['metrics.AUROC DESC'], max_results=1)#.iloc[0]
         
-        self.assertGreater(working_model.size, 0.7)
+        self.assertGreater(working_model.size, 0)
 
     def tearDown(self):
         self.dbutils.fs.rm(self.test_dir, True)

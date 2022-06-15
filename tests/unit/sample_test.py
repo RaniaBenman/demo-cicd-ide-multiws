@@ -20,8 +20,9 @@ class SampleJobUnitTest(unittest.TestCase):
         self.job = SampleJob(spark=self.spark, init_conf=self.test_config)
 
     def test_sample(self):
-        # feel free to add new methods to this magic mock to mock some particular functionality
         self.job.dbutils = MagicMock()
+        #--------------------1- In local VM, No access to preexisting table ---------------
+        #-------------------> creating table w/: overriden name + attached sample csv --------------------
         print("****Loading test dataset")
         df = self.spark.read.option("delimiter", ",")\
             .option("header", "true")\
@@ -41,7 +42,8 @@ class SampleJobUnitTest(unittest.TestCase):
         tag_value_training_date = date.today().strftime("%Y-%m-%d")
 
         #finding successful run for our model
-        working_model_filter = ' and metrics.AUROC >= 0'#TODO criteria can be in conf file, and differ from env to another
+        #-------------2-less demanding threshold as criteria of success for our UT------------
+        working_model_filter = ' and metrics.AUROC >= 0'
         working_model = mlflow.search_runs(filter_string='tags.'+tag_label_model+'="'+tag_value_model+'" and attributes.status = "FINISHED" and tags.'+tag_label_training_date+'="'+tag_value_training_date+'"'+working_model_filter, order_by=['metrics.AUROC DESC'], max_results=1)#.iloc[0]
         
         self.assertGreater(working_model.size, 0)
