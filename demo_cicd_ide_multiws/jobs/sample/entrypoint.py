@@ -1,6 +1,7 @@
 from demo_cicd_ide_multiws.common import Job
 
 #once the data is ready, we can train a model
+from datetime import date
 import mlflow
 from mlflow import spark as mlflow_spark
 
