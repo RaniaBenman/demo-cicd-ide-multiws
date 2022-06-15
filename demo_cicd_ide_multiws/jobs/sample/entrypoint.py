@@ -1,7 +1,6 @@
 from demo_cicd_ide_multiws.common import Job
 
-
-from datetime import date
+#once the data is ready, we can train a model
 import mlflow
 from mlflow import spark as mlflow_spark
 
@@ -20,7 +19,18 @@ class SampleJob(Job):
 
     def launch(self):
         self.logger.info("******** Launching CICD Demo job ********")
+        listing = self.dbutils.fs.ls("dbfs:/")
 
+        for l in listing:
+            self.logger.info(f"DBFS directory: {l}")
+
+        print("********My random print********")
+        df = self.spark.range(0, 1000)
+
+        df.write.format(self.conf["output_format"]).mode("overwrite").save(
+            self.conf["output_path"]
+        )
+#Added comment
         model_name = "demo_cicd_ide_multiws"
         model_reg_name = "demo_cicd_ide_multiws"#TODO change with spaces
         experiment_workspace_dir = "/demo/cicd/ide_multiws"
