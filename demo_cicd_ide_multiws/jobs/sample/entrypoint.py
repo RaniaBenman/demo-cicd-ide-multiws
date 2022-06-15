@@ -41,8 +41,9 @@ class SampleJob(Job):
         tag_value_model = "turbine_gbt"
         tag_value_training_date = date.today().strftime("%Y-%m-%d")
 
-        #-----------------1-READ turbine data from PRE-EXISTING table------------------------------
-        print(self.conf["input_table_name"])#-------table name in conf file : conf/test/sample.yml
+        #-----------------1 - READ turbine data from PRE-EXISTING table------------------------------
+        #-------table name in conf file : conf/test/sample.yml
+        print(self.conf["input_table_name"])
         dataset = self.spark.read.table(self.conf["input_table_name"])
 
         mlflow.set_experiment(experiment_workspace_dir) #not needed in notebook
