@@ -31,7 +31,7 @@ class SampleJob(Job):
         df.write.format(self.conf["output_format"]).mode("overwrite").save(
             self.conf["output_path"]
         )
-#Added comment
+# Added comment
         model_name = "demo_cicd_ide_multiws"
         model_reg_name = "demo_cicd_ide_multiws"#TODO change with spaces
         experiment_workspace_dir = "/demo/cicd/ide_multiws"
