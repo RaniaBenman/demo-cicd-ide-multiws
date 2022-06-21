@@ -9,3 +9,9 @@
 # MAGIC show tables hive_metastore.default;--todo
 
 # COMMAND ----------
+
+from demo_cicd_ide_multiws.common import Job
+
+# COMMAND ----------
+
+
