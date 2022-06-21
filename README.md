@@ -1,11 +1,11 @@
-
-------------
-
 # demo-covea-ide-gitinit
 
 This is a sample project for Databricks, generated via dbx init.
 
+While using this project, you need Python 3.X, dbx as well as `pip` or `conda` for package management.
+
 ## Forks
+
 If you have forked this repo, set the following secrets or environment variables on your CI provider. (e.g: On Github that would be **Settings** > **Secrets** > **Actions**)  :
 - `DATABRICKS_HOST` & `DATABRICKS_TOKEN` for the **staging** Databricks workspace 
 - `DATABRICKS_HOST_PROD` & `DATABRICKS_TOKEN_PROD` for the **production** Databricks workspace 
@@ -35,8 +35,7 @@ dbx execute \
 
 Multiple users also can use the same cluster for development. Libraries will be isolated per each execution context.
 
-## Local execution
-While using this project on your local environment, you need Python 3.X, dbx as well as `pip` or `conda` for package management.
+---------
 
 ## Installing project requirements
 
