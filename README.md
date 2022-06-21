@@ -1,8 +1,8 @@
 
 ## Forks
-If you have forked this repo, Go to its *Settings* > *Secrets* > *Actions* and create the following secrets:
-- *DATABRICKS_HOST & *DATABRICKS_TOKEN* for the staging Databricks workspace 
-- *DATABRICKS_HOST_PROD* & *DATABRICKS_TOKEN_PROD* for the prod Databricks workspace 
+If you have forked this repo, set the following secrets or environment variables on your CI provider. (e.g: On Github that would be *Settings* > *Secrets* > *Actions*)  :
+- `DATABRICKS_HOST` & `DATABRICKS_TOKEN` for the **staging** Databricks workspace 
+- `DATABRICKS_HOST_PROD` & `DATABRICKS_TOKEN_PROD` for the **production** Databricks workspace 
 
 ## Remote execution from local environment
 In order to launch this application remotely from your local environment and outside of its automation chain, make sure to set up the following :
