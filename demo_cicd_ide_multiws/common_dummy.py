@@ -1,8 +1,6 @@
 class SampleCommonClass():
-    def __init__(self):
-        
-
-    def method1(self, a, b):
+    
+    def method(self, a, b):
         return a + b
 
     @staticmethod
