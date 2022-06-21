@@ -1,6 +1,6 @@
 # Multi-workspace CICD Demo
 
-This is a sample project for Databricks, generated via dbx init.
+This is a sample project for Databricks, generated via the `dbx init` command.
 
 While using this project, you need Python 3.X, dbx as well as `pip` or `conda` for package management.
 
