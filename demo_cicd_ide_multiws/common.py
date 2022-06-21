@@ -11,8 +11,6 @@ import sys
 # abstract class for jobs
 class Job(ABC):
     def __init__(self, spark=None, init_conf=None):
-        print("*** Common utilities ***")
-        self.logger.info("Common utilities")
         self.spark = self._prepare_spark(spark)
         self.logger = self._prepare_logger()
         self.dbutils = self.get_dbutils()
@@ -21,6 +19,10 @@ class Job(ABC):
         else:
             self.conf = self._provide_config()
         self._log_conf()
+
+    def print(self):
+        print("*** Common utilities ***")
+        self.logger.info("Common utilities")
 
     @staticmethod
     def _prepare_spark(spark) -> SparkSession:
