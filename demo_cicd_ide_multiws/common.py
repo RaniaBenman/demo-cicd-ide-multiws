@@ -20,8 +20,7 @@ class Job(ABC):
             self.conf = self._provide_config()
         self._log_conf()
 
-    @staticmethod
-    def _printf():
+    def printy(self):
         print("*** Common utilities ***")
 
     @staticmethod
