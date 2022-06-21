@@ -1,22 +1,22 @@
 {
     "environments": {
         "default": {
-            "profile": "azure-demo-rania-pr",
+            "profile": "azure-demo-rania-pr-dev",
             "workspace_dir": "/demo/cicd/ide_multiws",
             "artifact_location": "dbfs:/demo/artifacts/cicd_ide_multiws"
         },
         "dev": {
-            "profile": "azure-dlh-demo-rania",
+            "profile": "dev",
             "workspace_dir": "/demo/cicd/ide_multiws",
             "artifact_location": "dbfs:/demo/artifacts/cicd_ide_multiws"
         },
         "staging": {
-            "profile": "azure-demo-rania-pr",
+            "profile": "staging",
             "workspace_dir": "/demo/cicd/ide_multiws",
             "artifact_location": "dbfs:/demo/artifacts/cicd_ide_multiws"
         },
         "prod": {
-            "profile": "azure-demo-rania-pr-prod",
+            "profile": "prod",
             "workspace_dir": "/demo/cicd/ide_multiws",
             "artifact_location": "dbfs:/demo/artifacts/cicd_ide_multiws"
         }
