@@ -1,4 +1,4 @@
-# demo-cicd-ide-multiws
+# Multi-workspace CICD Demo
 
 This is a sample project for Databricks, generated via dbx init.
 
