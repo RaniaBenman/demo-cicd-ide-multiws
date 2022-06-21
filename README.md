@@ -1,6 +1,6 @@
-# demo-covea-ide-gitinit
+# Multi-workspace CICD Demo
 
-This is a sample project for Databricks, generated via dbx init.
+This is a sample project for Databricks, generated via the `dbx init` command.
 
 While using this project, you need Python 3.X, dbx as well as `pip` or `conda` for package management.
 
@@ -19,19 +19,19 @@ git tag -a v<your-project-version> -m "Release tag for version <your-project-ver
 git push origin --tags
 ```
 
-## Interactive execution and development
+## Interactive execution and development from a local environment
 
 In order to launch this application remotely from your local environment and outside of its automation chain, make sure to set up the following :
 1. With Databricks CLI, create a profile using your credentials from the Dev Databricks workspace
 2. In the .dbx/project.json file, edit the profile name in the default and/or the dev environment configuration, using the same profile name you declared in step 1
 3. `dbx` expects that the cluster for interactive execution mentioned in the `cluster-name` parameter exists on the **Dev** Databricks workspace and it supports `%pip` and `%conda` magic [commands](https://docs.databricks.com/libraries/notebooks-python-libraries.html).
-4. Please configure your job in `conf/deployment.yml` file.
-5. To execute the code interactively, provide either `--cluster-id` or `--cluster-name`.
-```bash
-dbx execute \
-    --cluster-name="<some-cluster-name>" \
-    --job=job-name
-```
+5. Job configurations for application execution and test execution are already provided to you in the `conf/deployment.yml`, so feel free to launch either one of the following commands from your terminal:
+
+```dbx execute --environment=dev --cluster-name="neutral" --job=demo-cicd-ide-multiws```
+
+```dbx execute --environment=dev --cluster-name="neutral" --job=demo-cicd-ide-multiws-integration-test```
+
+```dbx execute --environment=dev --cluster-name="neutral" --job=demo-cicd-ide-multiws-notebook```
 
 Multiple users also can use the same cluster for development. Libraries will be isolated per each execution context.
 
