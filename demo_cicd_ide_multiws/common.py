@@ -20,9 +20,14 @@ class Job(ABC):
             self.conf = self._provide_config()
         self._log_conf()
 
+    @staticmethod
     def print(self):
         print("*** Common utilities ***")
         self.logger.info("Common utilities")
+
+    @staticmethod
+    def printf():
+        print("*** Common utilities ***")
 
     @staticmethod
     def _prepare_spark(spark) -> SparkSession:
