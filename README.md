@@ -59,9 +59,12 @@ dbx launch --job=demo-covea-ide-gitinit-sample-integration-test --as-run-submit 
 
 ## Interactive execution and development
 
-1. `dbx` expects that cluster for interactive execution supports `%pip` and `%conda` magic [commands](https://docs.databricks.com/libraries/notebooks-python-libraries.html).
-2. Please configure your job in `conf/deployment.yml` file.
-2. To execute the code interactively, provide either `--cluster-id` or `--cluster-name`.
+In order to launch this application remotely from your local environment and outside of its automation chain, make sure to set up the following :
+1. With Databricks CLI, create a profile using your credentials from the Dev Databricks workspace
+2. In the .dbx/project.json file, edit the profile name in the default and/or the dev environment configuration, using the same profile name you declared in step 1
+3. `dbx` expects that the cluster for interactive execution mentioned in the `cluster-name` parameter exists on the **Dev** Databricks workspace and it supports `%pip` and `%conda` magic [commands](https://docs.databricks.com/libraries/notebooks-python-libraries.html).
+4. Please configure your job in `conf/deployment.yml` file.
+5. To execute the code interactively, provide either `--cluster-id` or `--cluster-name`.
 ```bash
 dbx execute \
     --cluster-name="<some-cluster-name>" \
