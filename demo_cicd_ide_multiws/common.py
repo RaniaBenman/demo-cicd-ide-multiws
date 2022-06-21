@@ -93,10 +93,10 @@ class Job(ABC):
         """
         pass
 
-class SampleCommonClass(object):
+class SampleCommonClass():
     def __init__(self, spark=None, init_conf=None):
         
-        
+
     def method1(self, a, b):
         return a + b
 
