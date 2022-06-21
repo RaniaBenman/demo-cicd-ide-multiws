@@ -14,4 +14,9 @@ from demo_cicd_ide_multiws.common import Job
 
 # COMMAND ----------
 
+class SampleNotebookJob(Job):
+        print("******** Launching notebook ********")
+
+# COMMAND ----------
+
 
