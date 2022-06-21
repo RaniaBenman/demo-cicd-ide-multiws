@@ -44,6 +44,11 @@ environments:
         spark_python_task:
           python_file: "file://tests/integration/sample_test.py"
           parameters: ["--conf-file", "file:fuse://conf/test/sample.yml"]
+      - name: "demo-cicd-ide-multiws-notebook"
+        <<:
+          - *normal-static-cluster
+        spark_python_task:
+          python_file: "file://notebooks/ptest.py"
   #environment should be declared in .dbx/project.json
   #(json's profile var's irrelevant for this env)
   #if you rename jobs, rename them in .github/workflows/*.yml
@@ -70,4 +75,12 @@ environments:
           parameters: ["--conf-file", "file:fuse://conf/test/sample.yml"]
         schedule:
           quartz_cron_expression: "0 45 7 ? * * *"
+          timezone_id: "Europe/London"
+      - name: "demo-cicd-ide-multiws-notebook"
+        <<:
+          - *basic-cluster-props
+        spark_python_task:
+          python_file: "file://notebooks/ptest.py"
+        schedule:
+          quartz_cron_expression: "0 45 8 ? * * *"
           timezone_id: "Europe/London"
