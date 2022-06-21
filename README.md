@@ -1,21 +1,31 @@
 
-## Forks
-If you have forked this repo, set the following secrets or environment variables on your CI provider. (e.g: On Github that would be *Settings* > *Secrets* > *Actions*)  :
-- `DATABRICKS_HOST` & `DATABRICKS_TOKEN` for the **staging** Databricks workspace 
-- `DATABRICKS_HOST_PROD` & `DATABRICKS_TOKEN_PROD` for the **production** Databricks workspace 
-
-## Remote execution from local environment
-In order to launch this application remotely from your local environment and outside of its automation chain, make sure to set up the following :
-1/ With [Databricks CLI](https://docs.databricks.com/dev-tools/cli/index.html), create a profile using your credentials from the Dev Databricks workspace
-2/ In the .dbx/project.json file, edit the profile name in the default and/or the dev environment configuration, using the same profile name you declared in step 1
-
 ------------
 
 # demo-covea-ide-gitinit
 
 This is a sample project for Databricks, generated via dbx init.
 
-While using this project, you need Python 3.X and `pip` or `conda` for package management.
+## Forks
+If you have forked this repo, set the following secrets or environment variables on your CI provider. (e.g: On Github that would be **Settings** > **Secrets** > **Actions**)  :
+- `DATABRICKS_HOST` & `DATABRICKS_TOKEN` for the **staging** Databricks workspace 
+- `DATABRICKS_HOST_PROD` & `DATABRICKS_TOKEN_PROD` for the **production** Databricks workspace 
+
+## Testing and releasing via CI pipeline
+
+- To trigger the CI pipeline, simply merge and push your code into the `staging` branch of this repository. If CI provider is correctly set, it shall trigger the general testing pipeline consisting of Unit tests which will run on a VM, as well as integration tests which will run on the **staging** Databricks workspace
+- To trigger the release pipeline, create a release and tag the new code version on the `main` branch:
+```
+git tag -a v<your-project-version> -m "Release tag for version <your-project-version>"
+git push origin --tags
+```
+
+## Remote execution from a local environment
+In order to launch this application remotely from your local environment and outside of its automation chain, make sure to set up the following :
+1- With [Databricks CLI](https://docs.databricks.com/dev-tools/cli/index.html), create a profile using your credentials from the Dev Databricks workspace
+2- In the `.dbx/project.json` file, edit the profile name in the default and/or the dev environment configuration, using the same profile name you declared in step 1
+
+## Local execution
+While using this project on your local environment, you need Python 3.X, dbx as well as `pip` or `conda` for package management.
 
 ## Installing project requirements
 
@@ -96,12 +106,6 @@ dbx launch --job=<job-name>
 
 This type of deployment shall be mainly used from the CI pipeline in automated way during new release.
 
-
-## CICD pipeline settings
-
-Please set the following secrets or environment variables for your CI provider:
-- `DATABRICKS_HOST`
-- `DATABRICKS_TOKEN`
 
 ## Testing and releasing via CI pipeline
 
