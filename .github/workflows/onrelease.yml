@@ -43,3 +43,7 @@ jobs:
       - name: Deploy the job
         run: |
           dbx deploy --environment=prod --jobs=demo-cicd-ide-multiws
+
+      - name: Deploy the notebook job
+        run: |
+          dbx deploy --environment=prod --jobs=demo-cicd-ide-multiws-notebook
