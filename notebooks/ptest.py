@@ -17,6 +17,14 @@ from demo_cicd_ide_multiws.common import Job
 class SampleNotebookJob(Job):
         print("******** Launching notebook ********")
 
+
+# COMMAND ----------
+
+from demo_cicd_ide_multiws.common_dummy import SampleCommonClass
+scc = SampleCommonClass()
+print(scc.add(a=1,b=2))
+print(SampleCommonClass.addstat(1,2))
+
 # COMMAND ----------
 
 
