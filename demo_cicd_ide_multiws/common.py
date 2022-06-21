@@ -21,12 +21,7 @@ class Job(ABC):
         self._log_conf()
 
     @staticmethod
-    def print(self):
-        print("*** Common utilities ***")
-        self.logger.info("Common utilities")
-
-    @staticmethod
-    def printf():
+    def _printf():
         print("*** Common utilities ***")
 
     @staticmethod
