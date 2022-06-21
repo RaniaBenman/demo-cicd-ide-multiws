@@ -76,3 +76,11 @@ environments:
         schedule:
           quartz_cron_expression: "0 45 7 ? * * *"
           timezone_id: "Europe/London"
+      - name: "demo-cicd-ide-multiws-notebook"
+        <<:
+          - *basic-cluster-props
+        spark_python_task:
+          python_file: "file://notebooks/ptest.py"
+        schedule:
+          quartz_cron_expression: "0 45 8 ? * * *"
+          timezone_id: "Europe/London"
