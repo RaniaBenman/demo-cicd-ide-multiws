@@ -26,5 +26,3 @@ print(scc.add(a=1,b=2))
 print(SampleCommonClass.addstat(1,2))
 
 # COMMAND ----------
-
-
