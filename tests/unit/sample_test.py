@@ -21,7 +21,7 @@ class SampleJobUnitTest(unittest.TestCase):
 
     def test_sample(self):
         self.job.dbutils = MagicMock()
-        #--------------------1- In local VM, No access to preexisting table ---------------
+        #-------------------- 1- In local VM, No access to preexisting table ---------------
         #-------------------> creating table w/: overriden name + attached sample csv --------------------
         print("****Loading test dataset")
         df = self.spark.read.option("delimiter", ",")\
