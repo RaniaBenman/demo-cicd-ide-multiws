@@ -1,12 +1,12 @@
 class SampleCommonClass():
     
-    def method(self, a, b):
+    def add(self, a, b):#i
         return a + b
 
     @staticmethod
-    def methodstat(a, b):
+    def addstat(a, b):
         return a + b
 
     @classmethod
-    def methodcls(cls, a, b):
-        return cls.methodstat(a, b)
+    def addcls(cls, a, b):
+        return cls.addstat(a, b)
