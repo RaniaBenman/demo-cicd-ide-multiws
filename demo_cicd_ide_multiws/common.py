@@ -20,9 +20,6 @@ class Job(ABC):
             self.conf = self._provide_config()
         self._log_conf()
 
-    def printy(self):
-        print("*** Common utilities ***")
-
     @staticmethod
     def _prepare_spark(spark) -> SparkSession:
         if not spark:
@@ -95,3 +92,15 @@ class Job(ABC):
         :return:
         """
         pass
+
+class SampleCommonClass(object):
+    def method1(self, a, b):
+        return a + b
+
+    @staticmethod
+    def methodstat(a, b):
+        return a + b
+
+    @classmethod
+    def methodcls(cls, a, b):
+        return cls.methodstat(a, b)
