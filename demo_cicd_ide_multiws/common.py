@@ -94,6 +94,9 @@ class Job(ABC):
         pass
 
 class SampleCommonClass(object):
+    def __init__(self, spark=None, init_conf=None):
+        
+        
     def method1(self, a, b):
         return a + b
 
