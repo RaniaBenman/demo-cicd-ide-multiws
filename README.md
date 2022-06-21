@@ -1,4 +1,4 @@
-# demo-covea-ide-gitinit
+# demo-cicd-ide-multiws
 
 This is a sample project for Databricks, generated via dbx init.
 
