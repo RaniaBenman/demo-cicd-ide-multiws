@@ -19,10 +19,21 @@ git tag -a v<your-project-version> -m "Release tag for version <your-project-ver
 git push origin --tags
 ```
 
-## Remote execution from a local environment
+## Interactive execution and development
+
 In order to launch this application remotely from your local environment and outside of its automation chain, make sure to set up the following :
-1- With [Databricks CLI](https://docs.databricks.com/dev-tools/cli/index.html), create a profile using your credentials from the Dev Databricks workspace
-2- In the `.dbx/project.json` file, edit the profile name in the default and/or the dev environment configuration, using the same profile name you declared in step 1
+1. With Databricks CLI, create a profile using your credentials from the Dev Databricks workspace
+2. In the .dbx/project.json file, edit the profile name in the default and/or the dev environment configuration, using the same profile name you declared in step 1
+3. `dbx` expects that the cluster for interactive execution mentioned in the `cluster-name` parameter exists on the **Dev** Databricks workspace and it supports `%pip` and `%conda` magic [commands](https://docs.databricks.com/libraries/notebooks-python-libraries.html).
+4. Please configure your job in `conf/deployment.yml` file.
+5. To execute the code interactively, provide either `--cluster-id` or `--cluster-name`.
+```bash
+dbx execute \
+    --cluster-name="<some-cluster-name>" \
+    --job=job-name
+```
+
+Multiple users also can use the same cluster for development. Libraries will be isolated per each execution context.
 
 ## Local execution
 While using this project on your local environment, you need Python 3.X, dbx as well as `pip` or `conda` for package management.
@@ -56,22 +67,6 @@ For a test on an automated job cluster, deploy the job files and then launch:
 dbx deploy --jobs=demo-covea-ide-gitinit-sample-integration-test --files-only
 dbx launch --job=demo-covea-ide-gitinit-sample-integration-test --as-run-submit --trace
 ```
-
-## Interactive execution and development
-
-In order to launch this application remotely from your local environment and outside of its automation chain, make sure to set up the following :
-1. With Databricks CLI, create a profile using your credentials from the Dev Databricks workspace
-2. In the .dbx/project.json file, edit the profile name in the default and/or the dev environment configuration, using the same profile name you declared in step 1
-3. `dbx` expects that the cluster for interactive execution mentioned in the `cluster-name` parameter exists on the **Dev** Databricks workspace and it supports `%pip` and `%conda` magic [commands](https://docs.databricks.com/libraries/notebooks-python-libraries.html).
-4. Please configure your job in `conf/deployment.yml` file.
-5. To execute the code interactively, provide either `--cluster-id` or `--cluster-name`.
-```bash
-dbx execute \
-    --cluster-name="<some-cluster-name>" \
-    --job=job-name
-```
-
-Multiple users also can use the same cluster for development. Libraries will be isolated per each execution context.
 
 ## Preparing deployment file
 
