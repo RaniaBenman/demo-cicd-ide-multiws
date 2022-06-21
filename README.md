@@ -12,7 +12,7 @@ If you have forked this repo, set the following secrets or environment variables
 
 ## Testing and releasing via CI pipeline
 
-- To trigger the CI pipeline, simply merge and push your code into the `staging` branch of this repository. If CI provider is correctly set, it shall trigger the general testing pipeline consisting of Unit tests which will run on a VM, as well as integration tests which will run on the **staging** Databricks workspace
+- To trigger the CI pipeline, simply merge and push your code into the `staging` branch of this repository. The Github Actions of this repo are, but if your other CI provider is correctly set, it shall trigger the general testing pipeline consisting of Unit tests which will run on a VM, as well as integration tests which will run on the **staging** Databricks workspace
 - To trigger the release pipeline, create a release and tag the new code version on the `main` branch:
 ```
 git tag -a v<your-project-version> -m "Release tag for version <your-project-version>"
