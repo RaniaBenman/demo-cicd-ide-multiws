@@ -6,7 +6,7 @@
             "artifact_location": "dbfs:/demo/artifacts/cicd_ide_multiws"
         },
         "dev": {
-            "profile": "dev",
+            "profile": "azure-demo-rania-pr-dev",
             "workspace_dir": "/demo/cicd/ide_multiws",
             "artifact_location": "dbfs:/demo/artifacts/cicd_ide_multiws"
         },
