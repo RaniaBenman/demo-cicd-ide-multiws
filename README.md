@@ -9,9 +9,14 @@ The slide deck for this demo repository is on [this link](https://bit.ly/3zZBEPw
 
 ## Forks
 
-If you have forked this repo, set the following secrets or environment variables on your CI provider. (e.g: On Github that would be **Settings** > **Secrets** > **Actions**)  :
+If you have forked this repo, please make sure to set the following secrets or environment variables on your CI provider. e.g: On Github that would be **Settings** > **Secrets** > **Actions**  :
 - `DATABRICKS_HOST` & `DATABRICKS_TOKEN` for the **staging** Databricks workspace 
 - `DATABRICKS_HOST_PROD` & `DATABRICKS_TOKEN_PROD` for the **production** Databricks workspace 
+
+If you're interested in **Interactive execution and development from a local environment**, please make sure to create on your **Dev** Databricks workspace, a cluster that fits the criteria described in that section.
+
+**👉 Bricksters only** : 
+You don't have to go through **any** of this, please simply request access to this demo (repository + workspaces) by contacting the creator of this repository.
 
 ## Testing and releasing via CI pipeline
 
@@ -25,11 +30,13 @@ git push origin --tags
 
 ## Interactive execution and development from a local environment
 
-In order to launch this application remotely from your local environment and outside of its automation chain, make sure to set up the following :
-1. With Databricks CLI, create a profile using your credentials from the Dev Databricks workspace
-2. In the `.dbx/project.json` file, edit the profile name in the the dev environment configuration, using the same profile name you declared in step 1
-3. `dbx` expects that the cluster for interactive execution mentioned in the `cluster-name` parameter exists on the **Dev** Databricks workspace and it supports `%pip` and `%conda` magic [commands](https://docs.databricks.com/libraries/notebooks-python-libraries.html).
-5. Job configurations for application execution and test execution are already provided to you in the `conf/deployment.yml`, so feel free to launch either one of the following commands from your terminal:
+In order to launch this application remotely from your local environment and outside of this automation chain, please make sure to set up the following :
+1. With Databricks CLI, create a profile using your credentials from the **Dev** Databricks workspace
+2. In the `.dbx/project.json` file, replace the profile name of the dev environment configuration by the one you declared in step 1
+3. `dbx` expects that the cluster for interactive execution already exists on the **Dev** Databricks workspace and that it supports `%pip` and `%conda` magic [commands](https://docs.databricks.com/libraries/notebooks-python-libraries.html). This cluster's name is passed as the `cluster-name` parameter, as illustrated in the commands bellow.
+
+4. Job configurations for application execution and test execution are already provided to you in the `conf/deployment.yml`
+5. Execute your code remotely on the **Dev** Databricks workspace by launching either one of the following commands from your local terminal after replacing *neutral* with the name of your cluster :
 
 ```dbx execute --environment=dev --cluster-name="neutral" --job=demo-cicd-ide-multiws```
 
@@ -37,7 +44,10 @@ In order to launch this application remotely from your local environment and out
 
 ```dbx execute --environment=dev --cluster-name="neutral" --job=demo-cicd-ide-multiws-notebook```
 
-Multiple users also can use the same cluster for development. Libraries will be isolated per each execution context.
+**👉 Bricksters only** : 
+No need to replace the name. This cluster has already been set up for you and **is** called *neutral*.
+
+**Note** : Multiple users also can use the same cluster for development. Libraries will be isolated per each execution context.
 
 ---------
 
