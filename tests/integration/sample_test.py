@@ -14,7 +14,7 @@ class SampleJobIntegrationTest(unittest.TestCase):#Job?
             "output_path": self.test_dir,
             "input_table_name": "hive_metastore.default.turbines",
             "run_mode": "integration",
-        }#self.conf["input_table_name"]}
+        }# self.conf["input_table_name"]}
 
         self.job = SampleJob(init_conf=self.test_config)
         self.dbutils = DBUtils(self.job.spark)

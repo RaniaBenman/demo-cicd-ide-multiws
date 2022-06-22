@@ -46,7 +46,7 @@ environments:
           parameters: ["--conf-file", "file:fuse://conf/test/sample.yml"]
       - name: "demo-cicd-ide-multiws-notebook"
         <<:
-          - *normal-static-cluster
+          - *basic-static-cluster
         spark_python_task:
           python_file: "file://notebooks/ptest.py"
   #environment should be declared in .dbx/project.json
