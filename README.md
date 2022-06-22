@@ -13,7 +13,7 @@ If you have forked this repo, please make sure to set the following secrets or e
 - `DATABRICKS_HOST` & `DATABRICKS_TOKEN` for the **staging** Databricks workspace 
 - `DATABRICKS_HOST_PROD` & `DATABRICKS_TOKEN_PROD` for the **production** Databricks workspace 
 
-If you're interested in **Interactive execution and development from a local environment**, please make sure to create on your **Dev** Databricks workspace, a cluster that fits the criteria described in that section.
+If you're interested in [**Interactive execution and development from a local environment**](#interactive-execution-and-development-from-a-local-environment), please make sure to create on your **Dev** Databricks workspace, a cluster that fits the criteria described in that section.
 
 **👉 Bricksters only** : 
 You don't have to go through **any** of this, please simply request access to this demo (repository + workspaces) by contacting the creator of this repository.
