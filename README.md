@@ -5,7 +5,7 @@ This is a sample project for Databricks, generated via the `dbx init` command.
 While using this project, you need Python 3.X, dbx as well as `pip` or `conda` for package management.
 
 **👉 Bricksters only** : 
-The slide deck for this demo repository is on [this link](https://docs.google.com/presentation/d/1lqYo2GBE3P85kcgGl8xpX90_3jWjhiPf)
+The slide deck for this demo repository is on [this link](https://bit.ly/3zZBEPw)
 
 ## Forks
 
