@@ -29,7 +29,7 @@ In order to launch this application remotely from your local environment and out
 1. With Databricks CLI, create a profile using your credentials from the Dev Databricks workspace
 2. In the `.dbx/project.json` file, edit the profile name in the the dev environment configuration, using the same profile name you declared in step 1
 3. `dbx` expects that the cluster for interactive execution mentioned in the `cluster-name` parameter exists on the **Dev** Databricks workspace and it supports `%pip` and `%conda` magic [commands](https://docs.databricks.com/libraries/notebooks-python-libraries.html).
-5. Job configurations for application execution and test execution are already provided to you in the `conf/deployment.yml`, so feel free to launch either one of the following commands from your terminal:
+5. Job configurations for application execution and test execution are already provided to you in the `conf/deployment.yml`, so feel free to launch either one of the following commands from your local terminal:
 
 ```dbx execute --environment=dev --cluster-name="neutral" --job=demo-cicd-ide-multiws```
 
@@ -37,7 +37,7 @@ In order to launch this application remotely from your local environment and out
 
 ```dbx execute --environment=dev --cluster-name="neutral" --job=demo-cicd-ide-multiws-notebook```
 
-Multiple users also can use the same cluster for development. Libraries will be isolated per each execution context.
+**Note:** Multiple users can also use the same cluster for development. Libraries will be isolated per each execution context.
 
 ---------
 
