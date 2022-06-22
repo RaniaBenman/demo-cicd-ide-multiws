@@ -16,7 +16,7 @@ If you have forked this repo, please make sure to set the following secrets or e
 If you're interested in **Interactive execution and development from a local environment**, please make sure to create on your **Dev** Databricks workspace, a cluster that fits the criteria described in that section.
 
 **👉 Bricksters only** : 
-You don't have to go through this set up, please simply request access to this demo (repository + workspaces) by contacting the creator of this repository.
+You don't have to go through **any** of this, please simply request access to this demo (repository + workspaces) by contacting the creator of this repository.
 
 ## Testing and releasing via CI pipeline
 
@@ -30,13 +30,13 @@ git push origin --tags
 
 ## Interactive execution and development from a local environment
 
-In order to launch this application remotely from your local environment and outside of this automation chain, make sure to set up the following :
+In order to launch this application remotely from your local environment and outside of this automation chain, please make sure to set up the following :
 1. With Databricks CLI, create a profile using your credentials from the **Dev** Databricks workspace
-2. In the `.dbx/project.json` file, replace the profile name of the dev environment configurationby the one you declared in step 1
+2. In the `.dbx/project.json` file, replace the profile name of the dev environment configuration by the one you declared in step 1
 3. `dbx` expects that the cluster for interactive execution already exists on the **Dev** Databricks workspace and that it supports `%pip` and `%conda` magic [commands](https://docs.databricks.com/libraries/notebooks-python-libraries.html). This cluster's name is passed as the `cluster-name` parameter, as illustrated in the commands bellow.
 
 4. Job configurations for application execution and test execution are already provided to you in the `conf/deployment.yml`
-5. Execute your code remotely on the **Dev** Databricks workspace by launching either one of the following commands from your terminal and replacing *neutral* with the name of your cluster :
+5. Execute your code remotely on the **Dev** Databricks workspace by launching either one of the following commands from your local terminal after replacing *neutral* with the name of your cluster :
 
 ```dbx execute --environment=dev --cluster-name="neutral" --job=demo-cicd-ide-multiws```
 
