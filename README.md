@@ -116,13 +116,3 @@ dbx launch --job=<job-name>
 ```
 
 This type of deployment shall be mainly used from the CI pipeline in automated way during new release.
-
-
-## Testing and releasing via CI pipeline
-
-- To trigger the CI pipeline, simply push your code to the repository. If CI provider is correctly set, it shall trigger the general testing pipeline
-- To trigger the release pipeline, get the current version from the `demo_cicd_ide_multiws/__init__.py` file and tag the current code version:
-```
-git tag -a v<your-project-version> -m "Release tag for version <your-project-version>"
-git push origin --tags
-```
