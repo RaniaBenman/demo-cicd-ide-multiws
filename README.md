@@ -24,8 +24,8 @@ You don't have to go through **any** of this, please simply request access to th
 ## Testing and releasing via CI pipeline
 
 The Github Actions of this repository are already preconfigured :
-- to trigger the CI pipeline upon the merging and pushing of code into the `staging` branch. The CI pipeline is a general testing pipeline that consists of Unit tests (which will run on a VM), as well as integration tests (which will run on the **staging** Databricks workspace)
-- to trigger the release pipeline upon the creation of a release and tagging the new code version on the `main` branch:
+- to trigger the CI pipeline upon the merging and pushing of code into the `staging` branch (from the `dev` branch). The CI pipeline is a general testing pipeline that consists of Unit tests (which will run on a VM), as well as integration tests (which will run on the **staging** Databricks workspace)
+- to trigger the release pipeline, not upon merging into the `main` branch from `staging`, but upon the creation of a release and tagging the new code version on the `main` branch:
 ```
 git tag -a v<your-project-version> -m "Release tag for version <your-project-version>"
 git push origin --tags
