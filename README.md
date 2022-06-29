@@ -9,11 +9,13 @@ The slide deck for this demo repository is on [this link](https://bit.ly/3zZBEPw
 
 ## Forks
 
-If you have forked this repo, please make sure to set the following secrets or environment variables on your CI provider. e.g: On Github that would be **Settings** > **Secrets** > **Actions**  :
+If you have forked this repo, please make sure you set up 3 branches `dev`, `staging`, `main` as well as the following secrets or environment variables on your CI provider :
 - `DATABRICKS_HOST` & `DATABRICKS_TOKEN` for the **staging** Databricks workspace 
 - `DATABRICKS_HOST_PROD` & `DATABRICKS_TOKEN_PROD` for the **production** Databricks workspace 
 
-All your Databricks workspaces should have a pre-existing table called `hive_metastore.default.turbines`
+... On Github these secrets would be set up on **Settings** > **Secrets** > **Actions** 
+
+All your Databricks workspaces must have a pre-existing table called `hive_metastore.default.turbines`
 that follows the schema of the sample dataset provided in [tests/unit/data](https://github.com/RaniaBenman/demo-cicd-ide-multiws/tree/dev/tests/unit/data). You can rename this table in the [conf/test/sample.yml](https://github.com/RaniaBenman/demo-cicd-ide-multiws/blob/dev/conf/test/sample.yml) file.
 
 If you're interested in [**Interactive execution and development from a local environment**](#interactive-execution-and-development-from-a-local-environment), please make sure to create on your **Dev** Databricks workspace, a cluster that fits the criteria described in that section.
